@@ -1,0 +1,10 @@
+langchain==0.2.14
+langchain-community==0.2.12
+langchain-core==0.2.33
+langchain-chroma==0.1.2
+langchain-google-genai==1.0.9
+chromadb==0.5.5
+pypdf==4.3.1
+python-dotenv==1.0.1
+sentence-transformers==3.0.1
+streamlit==1.37.1

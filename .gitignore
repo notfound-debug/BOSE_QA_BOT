@@ -1,0 +1,13 @@
+# Secrets
+.env
+__pycache__/
+*.pyc
+
+chroma_db/
+
+# OS files
+.DS_Store
+
+# Virtual Environments
+venv/
+env/
