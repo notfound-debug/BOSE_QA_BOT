@@ -24,14 +24,13 @@ def get_qa_chain(target_pdf=None):
     llm = ChatGoogleGenerativeAI(
         model=LLM_MODEL_NAME,
         google_api_key=GOOGLE_API_KEY,
-        temperature=0.3
+        temperature=0.5
     )
 
     # 1. Get the FILTERED retriever (Locks to the correct PDF)
     base_retriever = get_retriever(target_pdf_name=target_pdf)
 
-    # 2. Wrap it with MULTI-QUERY (Handles "AEC" -> "Acoustic Echo Cancelling")
-    # This asks the LLM to rewrite your question in 3 ways before searching
+    # 2. MULTI-QUERY RETRIEVER
     advanced_retriever = MultiQueryRetriever.from_llm(
         retriever=base_retriever,
         llm=llm
@@ -46,8 +45,11 @@ def get_qa_chain(target_pdf=None):
     
     INSTRUCTIONS:
     1. Answer based on the context provided.
-    2. You may infer standard technical acronyms (e.g., "AEC" matches "Acoustic Echo Cancelling").
-    3. If the answer is not in the context, say: 
+    2. You may expand acronyms ONLY if the expansion text exists in the provided context. 
+      Do NOT add external definitions (e.g., IP ratings, safety standards, electrical codes). 
+      You must ONLY answer using wording found inside the retrieved context.
+    3. DATA CLEANING: The source text may have merged words due to PDF formatting.
+    4. If the answer is not in the context, say: 
        "This query is not related to the currently selected product."
     
     Helpful Answer:"""

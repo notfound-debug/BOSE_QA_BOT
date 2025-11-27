@@ -25,8 +25,8 @@ def run_evaluation():
             "doc_source": "EX-1280C"
         },
         {
-            "question": "What is the IP rating of the DM8SE loudspeaker?",
-            "expected_keywords": ["IP55"],
+            "question": "What is the maximum 70V transformer tap setting in Watts?",
+            "expected_keywords": ["80W"],
             "doc_source": "DM8SE"
         },
         {
